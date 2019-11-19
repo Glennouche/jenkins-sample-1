@@ -27,6 +27,15 @@ node () {
 			} 
  		} 
 	}
+	stage ('APP-IC - Deploy') {
+	withMaven(maven: 'maven') { 
+ 			if(isUnix()) {
+ 				sh "mvn deploy" 
+			} else { 
+ 				bat "mvn deploy" 
+			} 
+ 		} 
+	}
 	stage ('App-IC - Post build actions') {
 /*
 Please note this is a direct conversion of post-build actions. 
